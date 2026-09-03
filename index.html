@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ASCII Love Letter</title>
+  <style>
+    body { background: #111; color: #f8f8f2; font-family: "Courier New", Courier, monospace; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+    .wrap { max-width:900px; padding:24px; }
+    pre { background:#0008; padding:18px; border-radius:8px; overflow:auto; white-space:pre; }
+    h1 { text-align:center; font-weight:400; margin-bottom:8px; }
+    .muted { color:#9aa0a6; font-size:0.9rem; text-align:center; }
+    a.button { display:inline-block; margin:12px auto; padding:8px 12px; background:#ff6b81; color:white; text-decoration:none; border-radius:6px; }
+    details { margin-top:12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ASCII Love Letter</h1>
+    <p class="muted">Hosted here for you — copy, edit, or download the C++ source below.</p>
+
+    <pre>
+======================================================================
+||                                                                  ||
+||                       A SPECIAL LETTER                           ||
+||                                                                  ||
+||                     FOR SOMEONE SPECIAL                          ||
+||                                                                  ||
+======================================================================
+
+                 .-''''''''''''''''''''-.
+              .-'                        '-.
+            .'                              '.
+           /                                  \
+          ;                                    ;
+          |                                    |
+          ;                                    ;
+           \                                  /
+            '.                              .'
+              '-.                        .-'
+                 '-.__________________.-'
+
+                    &lt;3  &lt;3  &lt;3  &lt;3  &lt;3
+
+                  I  L O V E  Y O U
+
+                    &lt;3  &lt;3  &lt;3  &lt;3  &lt;3
+
+======================================================================
+
+                         YOUR NAME
+                              +
+                         THEIR NAME
+
+                    =  ONE BEAUTIFUL STORY
+
+             .-.-.          .-.-.          .-.-.
+            (     )        (     )        (     )
+             `-.-'          `-.-'          `-.-'
+               |              |              |
+              / \            / \            / \
+
+                 ***********************
+                 *                     *
+                 *    I LOVE YOU &lt;3    *
+                 *                     *
+                 ***********************
+
+                 THE END... OR
+             THE BEGINNING OF US &lt;3
+    </pre>
+
+    <details>
+      <summary style="cursor:pointer">Show C++ source (click to expand)</summary>
+      <pre>
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;chrono&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+using namespace std;
+
+void wait(int ms) {
+    this_thread::sleep_for(chrono::milliseconds(ms));
+}
+
+void clearScreen() {
+    cout &lt;&lt; "\033[2J\033[1;1H";
+}
+
+// Draw a big heart
+void bigHeart(bool big) {
+    if (big) {
+        cout &lt;&lt; R"(
+                 ***       ***
+              ********* *********
+            ***********************
+           *************************
+          ***************************
+          ***************************
+           *************************
+            ***********************
+             *********************
+               *****************
+                 *************
+                   *********
+                     *****
+                       *
+)";
+    } else {
+        cout &lt;&lt; R"(
+               **     **
+             ******* *******
+           *******************
+          *********************
+          *********************
+           *******************
+             ***************
+               ***********
+                 *******
+                   ***
+                    *
+)";
+    }
+}
+
+// Falling stars
+void stars(int frame) {
+    string spaces[] = {
+        "     ", "          ", "  ", "              ",
+        "        ", "    ", "           ", " "
+    };
+
+    cout &lt;&lt; "\n";
+
+    for (int i = 0; i &lt; 8; i++) {
+        cout &lt;&lt; spaces[(i + frame) % 8]
+             &lt;&lt; ((i + frame) % 2 ? "*" : ".")
+             &lt;&lt; "\n";
+    }
+}
+
+// Flowers
+void flowers() {
+    cout &lt;&lt; R"(
+    
+        .-.-.             .-.-.             .-.-.
+       (  o  )           (  o  )           (  o  )
+        `-.-'             `-.-'             `-.-'
+          |                 |                 |
+         / \               / \               / \
+        /   \             /   \             /   \
+
+     @@@@              @@@@              @@@@
+    @    @            @    @            @    @
+     @@@@              @@@@              @@@@
+       ||                ||                ||
+       ||                ||                ||
+      /  \              /  \              /  \
+)";
+}
+
+// Main letter
+void letter() {
+    cout &lt;&lt; R"(
+======================================================================
+||                                                                  ||
+||                       A SPECIAL LETTER                           ||
+||                                                                  ||
+||                     FOR SOMEONE SPECIAL                          ||
+||                                                                  ||
+======================================================================
+
+                 .-''''''''''''''''''''-.
+              .-'                        '-.
+            .'                              '.
+           /                                  \
+          ;                                    ;
+          |                                    |
+          ;                                    ;
+           \                                  /
+            '.                              .'
+              '-.                        .-'
+                 '-.__________________.-'
+
+                    &lt;3  &lt;3  &lt;3  &lt;3  &lt;3
+
+                  I  L O V E  Y O U
+
+                    &lt;3  &lt;3  &lt;3  &lt;3  &lt;3
+
+======================================================================
+)";
+}
+
+int main() {
+
+    string myName = "YOUR NAME";
+    string theirName = "THEIR NAME";
+
+    srand(time(0));
+
+    // Opening WOW animation
+    for (int i = 0; i &lt; 4; i++) {
+        clearScreen();
+
+        cout &lt;&lt; "\n\n";
+        cout &lt;&lt; "                  W       W   OOOOO   W       W\n";
+        cout &lt;&lt; "                  W       W  O     O  W       W\n";
+        cout &lt;&lt; "                  W   W   W  O     O  W   W   W\n";
+        cout &lt;&lt; "                  W  W W  W  O     O  W  W W  W\n";
+        cout &lt;&lt; "                  W W   W W  O     O  W W   W W\n";
+        cout &lt;&lt; "                  WW     WW   OOOOO   WW     WW\n";
+
+        cout &lt;&lt; "\n";
+        cout &lt;&lt; "              ********************************\n";
+        cout &lt;&lt; "                 A LITTLE SURPRISE FOR YOU\n";
+        cout &lt;&lt; "              ********************************\n";
+
+        wait(500);
+    }
+
+    // Main animation
+    for (int frame = 0; frame &lt; 12; frame++) {
+
+        clearScreen();
+
+        cout &lt;&lt; "\n";
+        cout &lt;&lt; "        *           .             *          .\n";
+        cout &lt;&lt; "             .             *             *\n";
+
+        stars(frame);
+
+        cout &lt;&lt; "\n";
+        cout &lt;&lt; "====================================================================\n";
+        cout &lt;&lt; "||                                                                ||\n";
+        cout &lt;&lt; "||                 " &lt;&lt; myName &lt;&lt; "  +  " &lt;&lt; theirName &lt;&lt; "                 ||\n";
+        cout &lt;&lt; "||                                                                ||\n";
+        cout &lt;&lt; "||                    FOREVER IN MY HEART                         ||\n";
+        cout &lt;&lt; "||                                                                ||\n";
+        cout &lt;&lt; "====================================================================\n";
+
+        if (frame % 2 == 0)
+            bigHeart(true);
+        else
+            bigHeart(false);
+
+        cout &lt;&lt; "\n";
+        cout &lt;&lt; "                  I  L O V E  Y O U\n";
+        cout &lt;&lt; "\n";
+
+        flowers();
+
+        cout &lt;&lt; "\n";
+        cout &lt;&lt; "             *  *  *  *  *  *  *  *  *\n";
+        cout &lt;&lt; "          *        YOU + ME = US        *\n";
+        cout &lt;&lt; "             *  *  *  *  *  *  *  *  *\n";
+
+        wait(350);
+    }
+
+    // Final letter
+    clearScreen();
+
+    letter();
+
+    cout &lt;&lt; "\n";
+    cout &lt;&lt; "                         " &lt;&lt; myName &lt;&lt; "\n";
+    cout &lt;&lt; "                              +\n";
+    cout &lt;&lt; "                         " &lt;&lt; theirName &lt;&lt; "\n\n";
+
+    cout &lt;&lt; "                    =  ONE BEAUTIFUL STORY\n\n";
+
+    cout &lt;&lt; "             .-.-.          .-.-.          .-.-.\n";
+    cout &lt;&lt; "            (     )        (     )        (     )\n";
+    cout &lt;&lt; "             `-.-'          `-.-'          `-.-'\n";
+    cout &lt;&lt; "               |              |              |\n";
+    cout &lt;&lt; "              / \\            / \\            / \\\n";
+
+    cout &lt;&lt; "\n";
+    cout &lt;&lt; "                 ***********************\n";
+    cout &lt;&lt; "                 *                     *\n";
+    cout &lt;&lt; "                 *    I LOVE YOU &lt;3    *\n";
+    cout &lt;&lt; "                 *                     *\n";
+    cout &lt;&lt; "                 ***********************\n";
+
+    cout &lt;&lt; "\n";
+    cout &lt;&lt; "                 THE END... OR\n";
+    cout &lt;&lt; "             THE BEGINNING OF US &lt;3\n";
+
+    return 0;
+}
+      </pre>
+    </details>
+
+    <p style="text-align:center;margin-top:14px;"><a class="button" href="https://github.com/mr-mayuu777/Mayur-kshitija/blob/main/index.html" target="_blank">Open on GitHub</a></p>
+
+  </div>
+</body>
+</html>
