@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayur & Kshitija</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Georgia,serif}
+body{
+  overflow:hidden;
+  background:radial-gradient(circle at center,#35102f 0%,#16091d 48%,#05030a 100%);
+  color:#fff;
+}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.wrap{
+  position:relative;z-index:2;min-height:100vh;display:flex;
+  align-items:center;justify-content:center;padding:20px;
+}
+.card{
+  width:min(720px,94vw);max-height:92vh;overflow:auto;text-align:center;
+  padding:32px 22px;border:1px solid rgba(255,255,255,.22);
+  border-radius:28px;background:rgba(10,5,15,.68);
+  box-shadow:0 0 50px rgba(255,60,150,.22),inset 0 0 30px rgba(255,255,255,.03);
+  backdrop-filter:blur(7px);
+}
+h1{font-size:clamp(30px,8vw,62px);margin:0 0 4px;letter-spacing:3px}
+.names{font-size:clamp(20px,5vw,32px);margin:5px 0 24px}
+.small{opacity:.8;letter-spacing:4px;font-size:12px}
+.message{font-size:clamp(17px,4vw,23px);line-height:1.7;margin:24px auto;max-width:600px}
+.heart{
+  width:150px;height:150px;margin:20px auto;position:relative;
+  animation:beat 1.05s infinite ease-in-out;
+  filter:drop-shadow(0 0 18px rgba(255,50,130,.8));
+}
+.heart:before,.heart:after{
+  content:"";position:absolute;top:28px;width:78px;height:118px;
+  border-radius:78px 78px 0 0;background:#ff3f87;
+}
+.heart:before{left:72px;transform:rotate(45deg);transform-origin:0 100%}
+.heart:after{left:0;transform:rotate(-45deg);transform-origin:100% 100%}
+@keyframes beat{0%,100%{transform:scale(.9)}15%{transform:scale(1.08)}30%{transform:scale(.93)}45%{transform:scale(1.03)}60%{transform:scale(.9)}}
+.inside{position:absolute;z-index:3;left:0;right:0;top:78px;font-size:20px;font-family:Arial,sans-serif;font-weight:bold}
+.flowers{font-size:30px;letter-spacing:10px;margin:18px 0}
+.btn{
+  border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);
+  color:white;border-radius:999px;padding:12px 22px;font-size:15px;cursor:pointer
+}
+#secret{display:none;margin-top:18px;font-size:18px;line-height:1.6}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<div class="wrap">
+  <main class="card">
+    <div class="small">A LITTLE SURPRISE FOR</div>
+    <h1>Mayur &amp; Kshitija</h1>
+    <div class="names">One beautiful story &lt;3</div>
+
+    <div class="heart"><div class="inside">&lt;3</div></div>
+
+    <div class="message">
+      Dear Kshitija,<br><br>
+      Some people make ordinary moments feel special.
+      This little page is just a small way of saying...
+      <br><br>
+      <strong>I LOVE YOU</strong>
+    </div>
+
+    <div class="flowers">* &nbsp; @@@ &nbsp; * &nbsp; @@@ &nbsp; *</div>
+
+    <button class="btn" onclick="showSecret()">Open the little surprise</button>
+    <div id="secret">
+      Mayur + Kshitija<br>
+      <strong>YOU + ME = US</strong><br><br>
+      Always keep this little smile with you. &lt;3
+    </div>
+  </main>
+</div>
+
+<script>
+const c=document.getElementById("sky"),ctx=c.getContext("2d");
+let W,H,stars=[];
+function resize(){
+  W=c.width=innerWidth*devicePixelRatio; H=c.height=innerHeight*devicePixelRatio;
+  c.style.width=innerWidth+"px"; c.style.height=innerHeight+"px";
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  stars=Array.from({length:90},()=>({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    s:Math.random()*2+.5,v:Math.random()*1.8+.4,a:Math.random()
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  for(const p of stars){
+    ctx.globalAlpha=p.a;
+    ctx.fillStyle="#fff";
+    ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill();
+    p.y+=p.v;
+    if(p.y>innerHeight+5){p.y=-5;p.x=Math.random()*innerWidth}
+  }
+  requestAnimationFrame(draw);
+}
+function showSecret(){
+  document.getElementById("secret").style.display="block";
+}
+addEventListener("resize",resize);resize();draw();
+</script>
+</body>
+</html>
